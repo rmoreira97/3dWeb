@@ -26,23 +26,13 @@ loader.load('dikhololo_night_4k.exr', function (texture) {
     scene.add(skybox);
 });
 
-// Environment map for chrome reflection
-const envTexture = new THREE.CubeTextureLoader().load([
-  'path_to_px.jpg', 'path_to_nx.jpg',
-  'path_to_py.jpg', 'path_to_ny.jpg',
-  'path_to_pz.jpg', 'path_to_nz.jpg'
-]);
+// Torus (Ring)
 
-// Torus with chrome material
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const chromeMaterial = new THREE.MeshStandardMaterial({
-  color: 0xffffff,
-  metalness: 1.0,
-  roughness: 0.0,
-  envMap: envTexture
-});
-const torus = new THREE.Mesh(geometry, chromeMaterial);
+const torusGeometry = new THREE.TorusGeometry(10, 3, 16, 100);
+const torusMaterial = new THREE.MeshBasicMaterial({ color: 0xFF6347, wireframe: true });
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
 scene.add(torus);
+
 
 
 
@@ -77,11 +67,11 @@ function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
   const star = new THREE.Mesh(geometry, material);
-  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(300));
   star.position.set(x, y, z);
   scene.add(star);
 }
-Array(200).fill().forEach(addStar);
+Array(600).fill().forEach(addStar);
 
 // Avatar
 const Texture = new THREE.TextureLoader().load('rafa.png');
