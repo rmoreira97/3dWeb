@@ -16,7 +16,6 @@ camera.position.setX(-3);
 
 // Background
 const skyboxGeometry = new THREE.SphereGeometry(500, 60, 40);
-skyboxGeometry.scale(-1, 1, 1);
 const loader = new EXRLoader();
 loader.load('dikhololo_night_4k.exr', function (texture) {
     const skyboxMaterial = new THREE.MeshBasicMaterial({
@@ -26,7 +25,6 @@ loader.load('dikhololo_night_4k.exr', function (texture) {
     const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
     scene.add(skybox);
 });
-
 
 // Environment map for chrome reflection
 const envTexture = new THREE.CubeTextureLoader().load([
